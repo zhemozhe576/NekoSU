@@ -77,6 +77,7 @@ sealed class FlashIt : Parcelable {
         val allowShell: Boolean = false,
         val enableAdb: Boolean = false,
         val backup: Boolean = false,
+        val ksuCompatible: Boolean = false,
     ) : FlashIt()
 
     @Parcelize
@@ -118,6 +119,7 @@ fun flashIt(
             flashIt.allowShell,
             flashIt.enableAdb,
             flashIt.backup,
+            flashIt.ksuCompatible,
             onStdout,
             onStderr
         )

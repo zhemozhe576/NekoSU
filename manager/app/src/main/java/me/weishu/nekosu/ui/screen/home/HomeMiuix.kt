@@ -500,7 +500,7 @@ private fun DonateCard(onOpenUrl: (String) -> Unit) {
                     contentDescription = null
                 )
             },
-            onClick = { onOpenUrl("https://github.com/zhemozhe576/NekoSU") },
+            onClick = { onOpenUrl("https://patreon.com/weishu") },
             insideMargin = PaddingValues(18.dp)
         )
     }

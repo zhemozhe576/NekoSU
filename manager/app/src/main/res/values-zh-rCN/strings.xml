@@ -66,8 +66,8 @@
     <string name="home_learn_kernelsu">了解 KernelSU</string>
     <string name="home_learn_kernelsu_url">https://kernelsu.org/zh_CN/guide/what-is-kernelsu.html</string>
     <string name="home_click_to_learn_kernelsu">了解如何安装 KernelSU 以及如何开发模块</string>
-    <string name="home_support_title">支持 NekoSU</string>
-    <string name="home_support_content">NekoSU 将努力成为优秀的 KSU 分支，感谢官方 KernelSU 做出的贡献</string>
+    <string name="home_support_title">支持开发</string>
+    <string name="home_support_content">KernelSU 将保持免费开源，向开发者捐赠以表示支持。NekoSU 将努力成为优秀的 KSU 分支，感谢官方 KernelSU 做出的贡献</string>
     <string name="home_gki_warning">自 v3.0.0 起 GKI 工作模式将仅用于测试环境，我们不建议用于日常使用，也不再提供镜像文件</string>
     <string name="about_source_code"><![CDATA[在 %1$s 查看源码<br/>加入我们的 %2$s 频道<br/>加入我们的 <b><a href="https://pd.qq.com/s/8lipl1brp">QQ</a></b> 频道]]></string>
     <string name="profile_default">默认</string>
@@ -270,7 +270,9 @@
     <string name="module_shortcut_copy_scheme">复制 URL Scheme</string>
     <string name="module_shortcut_scheme_copied">已复制 URL Scheme</string>
     <string name="install_force_backup">备份为原厂镜像</string>
-    <string name="install_force_backup_summary">请确保你选择的 boot 镜像是原厂镜像</string>
+    <string name="install_force_backup_summary">请确保你选择的 boot 镜像为原厂镜像</string>
+    <string name="neko_ksu_compatible">KSU 共存模式</string>
+    <string name="neko_ksu_compatible_summary">修补的 boot 与 KSU 完全一致，若先前已刷 KSU 则无需二次修补</string>
     <string name="settings_sulog">SU 日志</string>
     <string name="settings_sulog_summary">将 Root 相关事件记录到 NekoSU 的 SU 日志文件中</string>
     <string name="sulog_log_files">日志文件</string>

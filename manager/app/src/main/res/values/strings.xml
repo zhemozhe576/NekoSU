@@ -85,8 +85,8 @@
     <string name="home_learn_kernelsu">Learn KernelSU</string>
     <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
     <string name="home_click_to_learn_kernelsu">Learn how to install KernelSU and use modules.</string>
-    <string name="home_support_title">Support NekoSU</string>
-    <string name="home_support_content">NekoSU strives to be an excellent KSU fork. Thanks to the official KernelSU for their contributions.</string>
+    <string name="home_support_title">Support development</string>
+    <string name="home_support_content">KernelSU will remain free and open source, donate to the developer to show your support. NekoSU will strive to be an excellent KSU fork. Thanks to the official KernelSU for their contributions.</string>
     <string name="home_gki_warning">Starting from v3.0.0, the GKI work mode will be used only in testing environments. We do not recommend it for daily use, and image files will no longer be provided.</string>
     <string name="about_source_code"><![CDATA[View source code at %1$s<br/>Join our %2$s channel]]></string>
     <string name="profile" translatable="false">App Profile</string>
@@ -168,6 +168,8 @@
     <string name="install_upload_lkm_file">Use local LKM file</string>
     <string name="install_force_backup">Backup as stock image</string>
     <string name="install_force_backup_summary">Please make sure your selected boot image is a stock image</string>
+    <string name="neko_ksu_compatible">KSU Compatible Mode</string>
+    <string name="neko_ksu_compatible_summary">Patch boot identically to KSU, allowing coexistence without re-patching if KSU was previously flashed</string>
     <string name="install_only_support_ko_file">Only .ko files are supported</string>
     <string name="select_file_tip">%1$s partition image is recommended</string>
     <string name="select_kmi">Select KMI</string>

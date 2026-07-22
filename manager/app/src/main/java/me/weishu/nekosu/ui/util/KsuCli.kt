@@ -271,6 +271,7 @@ fun installBoot(
     allowShell: Boolean,
     enableAdb: Boolean,
     forceBackup: Boolean,
+    ksuCompatible: Boolean,
     onStdout: (String) -> Unit,
     onStderr: (String) -> Unit,
 ): FlashResult {
@@ -310,6 +311,10 @@ fun installBoot(
 
     if (forceBackup) {
         cmd += " --backup"
+    }
+
+    if (ksuCompatible) {
+        cmd += " --ksu-compatible"
     }
 
     var lkmFile: File? = null

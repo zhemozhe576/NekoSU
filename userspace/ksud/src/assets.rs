@@ -57,6 +57,10 @@ pub fn get_asset(name: &str) -> Result<Box<dyn AsRef<[u8]>>> {
     Ok(Box::new(asset.data))
 }
 
+pub fn has_asset(name: &str) -> bool {
+    Asset::get(name).is_some()
+}
+
 pub fn list_supported_kmi() -> std::vec::Vec<std::string::String> {
     let mut list = Vec::new();
     for file in Asset::iter() {

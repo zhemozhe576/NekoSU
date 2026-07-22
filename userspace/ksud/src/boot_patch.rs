@@ -444,6 +444,11 @@ pub struct BootPatchArgs {
     #[arg(short, long, default_value = "false")]
     pub flash: bool,
 
+    /// use KSU compatible mode (use kernelsu.ko instead of nekosu.ko)
+    #[cfg(target_os = "android")]
+    #[arg(long, default_value = "false")]
+    pub ksu_compatible: bool,
+
     /// Force backup source image as stock image
     #[cfg(target_os = "android")]
     #[arg(long, default_value = "false")]
@@ -638,7 +643,16 @@ pub fn patch(args: BootPatchArgs) -> Result<()> {
             Box::new(map_file(&kmod_path)?)
         } else {
             println!("- KMI: {kmi}");
-            let name = format!("{kmi}_kernelsu.ko");
+            let name = if boot_patch.ksu_compatible {
+                format!("{kmi}_kernelsu.ko")
+            } else {
+                let neko_name = format!("{kmi}_nekosu.ko");
+                if assets::has_asset(&neko_name) {
+                    neko_name
+                } else {
+                    format!("{kmi}_kernelsu.ko")
+                }
+            };
             assets::get_asset(&name).with_context(|| format!("Failed to load {name}"))?
         };
 
