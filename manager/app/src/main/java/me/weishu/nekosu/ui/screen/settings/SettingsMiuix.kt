@@ -83,7 +83,6 @@ fun SettingPagerMiuix(
     val showUninstallDialog = rememberSaveable { mutableStateOf(false) }
     val showSendLogDialog = rememberSaveable { mutableStateOf(false) }
     val nekoConfig by rememberNekoUiConfig()
-    val showNekoSettings = rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -438,7 +437,7 @@ fun SettingPagerMiuix(
                                     tint = colorScheme.onBackground
                                 )
                             },
-                            onClick = { showNekoSettings.value = true },
+                            onClick = actions.onOpenNekoSettings,
                         )
                     }
 
@@ -482,13 +481,4 @@ fun SettingPagerMiuix(
                 }
             }
         }
-    }
-
-    if (showNekoSettings.value) {
-        androidx.compose.foundation.layout.Box(
-            modifier = Modifier.fillMaxWidth().fillMaxHeight()
-        ) {
-            NekoSettingsScreen()
-        }
-    }
 }

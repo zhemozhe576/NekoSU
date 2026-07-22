@@ -72,4 +72,5 @@ data class SettingsScreenActions(
     val onSetDebugMode: (Boolean) -> Unit,
     val onSetAutoJailbreak: (Boolean) -> Unit,
     val onOpenAbout: () -> Unit,
+    val onOpenNekoSettings: () -> Unit,
 )

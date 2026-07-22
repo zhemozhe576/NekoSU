@@ -27,9 +27,11 @@ fun getGitDescribe(): String {
 
 fun getVersionCode(): Int {
     val commitCount = getGitCommitCount()
-    return 30000 + commitCount
+    return 10200 + commitCount
 }
 
 fun getVersionName(): String {
-    return getGitDescribe()
+    val describe = getGitDescribe()
+    // If git describe returns a bare hash (no tags), fallback to "1.0.0"
+    return if (describe.matches(Regex("^[0-9a-f]{7,}$"))) "1.0.0" else describe
 }

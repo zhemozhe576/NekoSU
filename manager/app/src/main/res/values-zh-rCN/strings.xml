@@ -275,6 +275,7 @@
     <string name="install_force_backup_summary">请确保你选择的 boot 镜像为原厂镜像</string>
     <string name="neko_debug_mode">调试模式</string>
     <string name="neko_debug_mode_summary">模拟 root 状态，无需刷入即可测试。开启详细日志。</string>
+    <string name="neko_customization">NekoSU 美化</string>
     <string name="neko_ksu_compatible_summary">修补的 boot 与 KSU 完全一致，若先前已刷 KSU 则无需二次修补</string>
     <string name="settings_sulog">SU 日志</string>
     <string name="settings_sulog_summary">将 Root 相关事件记录到 NekoSU 的 SU 日志文件中</string>

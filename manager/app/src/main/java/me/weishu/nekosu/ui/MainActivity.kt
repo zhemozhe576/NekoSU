@@ -63,6 +63,7 @@ import me.weishu.nekosu.ui.navigation3.rememberNavigator
 import me.weishu.nekosu.ui.screen.about.AboutScreen
 import me.weishu.nekosu.ui.screen.appprofile.AppProfileScreen
 import me.weishu.nekosu.ui.screen.colorpalette.ColorPaletteScreen
+import me.weishu.nekosu.ui.screen.settings.NekoSettingsScreen
 import me.weishu.nekosu.ui.screen.executemoduleaction.ExecuteModuleActionScreen
 import me.weishu.nekosu.ui.screen.flash.FlashScreen
 import me.weishu.nekosu.ui.screen.home.HomePager
@@ -185,6 +186,7 @@ class MainActivity : ComponentActivity() {
                                 entry<Route.About> { AboutScreen() }
                                 entry<Route.Sulog> { SulogScreen() }
                                 entry<Route.ColorPalette> { ColorPaletteScreen() }
+                                entry<Route.NekoSettings> { NekoSettingsScreen() }
                                 entry<Route.AppProfileTemplate> { AppProfileTemplateScreen() }
                                 entry<Route.TemplateEditor> { key -> TemplateEditorScreen(key.template, key.readOnly) }
                                 entry<Route.AppProfile> { key -> AppProfileScreen(key.uid) }

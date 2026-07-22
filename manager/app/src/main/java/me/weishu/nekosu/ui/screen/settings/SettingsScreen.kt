@@ -43,6 +43,7 @@ fun SettingPager(
         onSetDebugMode = viewModel::setDebugMode,
         onSetAutoJailbreak = viewModel::setAutoJailbreak,
         onOpenAbout = { navigator.push(Route.About) },
+        onOpenNekoSettings = { navigator.push(Route.NekoSettings) },
     )
 
     when (LocalUiMode.current) {

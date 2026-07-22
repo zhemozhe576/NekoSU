@@ -4,6 +4,8 @@ import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -14,10 +16,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 import me.weishu.nekosu.R
+import me.weishu.nekosu.ui.navigation3.LocalNavigator
 import me.weishu.nekosu.ui.theme.BackgroundConfig
 import me.weishu.nekosu.ui.theme.NekoBackgroundManager
 import me.weishu.nekosu.ui.theme.isActive
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.Check
 import me.weishu.nekosu.ui.theme.rememberNekoUiConfig
 import top.yukonga.miuix.kmp.basic.*
@@ -26,9 +30,26 @@ import top.yukonga.miuix.kmp.theme.MiuixTheme.colorScheme
 
 @Composable
 fun NekoSettingsScreen() {
+    val navigator = LocalNavigator.current
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val nekoConfig by rememberNekoUiConfig()
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = stringResource(R.string.neko_customization),
+                navigationIcon = {
+                    IconButton(onClick = { navigator.pop() }) {
+                        Icon(
+                            imageVector = Icons.Rounded.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                }
+            )
+        }
+    ) { innerPadding ->
 
     val pickImageLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.GetContent()
@@ -65,7 +86,9 @@ fun NekoSettingsScreen() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 12.dp),
+            .padding(innerPadding)
+            .padding(horizontal = 12.dp)
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
 
@@ -319,5 +342,7 @@ fun NekoSettingsScreen() {
             )
         }
         Spacer(modifier = Modifier.height(80.dp))
-    }
-}
+        } // Column
+    } // Scaffold content
+    } // Scaffold
+} // function
