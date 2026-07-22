@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 import me.weishu.nekosu.R
 import me.weishu.nekosu.ui.theme.BackgroundConfig
@@ -293,7 +294,7 @@ fun NekoSettingsScreen() {
         // ---- 关于 ----
         Card(
             modifier = Modifier.fillMaxWidth(),
-            insidePadding = PaddingValues(16.dp)
+            insideMargin = PaddingValues(16.dp)
         ) {
             Text(text = "NekoSU 美化系统", color = colorScheme.onSurface)
             Spacer(modifier = Modifier.height(4.dp))
