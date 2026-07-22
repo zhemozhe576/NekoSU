@@ -9,6 +9,8 @@ import top.yukonga.miuix.kmp.basic.Button
 import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.basic.Slider
 import top.yukonga.miuix.kmp.theme.MiuixTheme.colorScheme
+import androidx.compose.ui.res.stringResource
+import me.weishu.nekosu.R
 import top.yukonga.miuix.kmp.window.WindowDialog
 
 @Composable
@@ -28,7 +30,7 @@ fun NekoCardEditDialog(
 
     WindowDialog(
         show = show,
-        title = "编辑卡片",
+        title = stringResource(R.string.neko_card_edit_title),
         onDismissRequest = onDismiss
     ) {
         Column(
@@ -36,7 +38,7 @@ fun NekoCardEditDialog(
                 .padding(16.dp)
                 .fillMaxWidth()
         ) {
-            Text("高度: ${height.toInt()}dp")
+            Text(stringResource(R.string.neko_card_height, height.toInt()))
             Slider(
                 value = height,
                 onValueChange = { height = it },
@@ -46,7 +48,7 @@ fun NekoCardEditDialog(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            Text("圆角: ${corner.toInt()}dp")
+            Text(stringResource(R.string.neko_card_corner, corner.toInt()))
             Slider(
                 value = corner,
                 onValueChange = { corner = it },
@@ -56,7 +58,7 @@ fun NekoCardEditDialog(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            Text("透明度: ${(alpha * 100).toInt()}%")
+            Text(stringResource(R.string.neko_card_alpha, (alpha * 100).toInt()))
             Slider(
                 value = alpha,
                 onValueChange = { alpha = it },
@@ -71,17 +73,17 @@ fun NekoCardEditDialog(
                 horizontalArrangement = Arrangement.End
             ) {
                 Button(onClick = onReset) {
-                    Text("重置")
+                    Text(stringResource(R.string.neko_card_reset))
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Button(onClick = onDismiss) {
-                    Text("取消")
+                    Text(stringResource(R.string.neko_color_cancel))
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Button(onClick = {
                     onConfirm(height.toInt(), corner.toInt(), alpha)
                 }) {
-                    Text("确定")
+                    Text(stringResource(R.string.neko_color_confirm))
                 }
             }
         }

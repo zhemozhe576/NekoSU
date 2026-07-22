@@ -337,8 +337,11 @@
     <string name="neko_color_confirm">Confirm</string>
     <string name="neko_color_cancel">Cancel</string>
     <string name="neko_card_edit_title">Card Settings</string>
-    <string name="neko_card_height">Height</string>
-    <string name="neko_card_corner">Corner Radius</string>
-    <string name="neko_card_alpha">Alpha</string>
+    <string name="neko_card_height">Height: %ddp</string>
+    <string name="neko_card_corner">Corner Radius: %ddp</string>
+    <string name="neko_card_alpha">Alpha: %d%%</string>
     <string name="neko_card_reset">Reset</string>
+    <string name="neko_image_set">Image set</string>
+    <string name="neko_video_set">Video set</string>
+    <string name="neko_hidden_card_count">%d cards hidden</string>
 </resources>

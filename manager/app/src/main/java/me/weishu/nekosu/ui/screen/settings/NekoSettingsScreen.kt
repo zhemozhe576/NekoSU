@@ -176,41 +176,6 @@ fun NekoSettingsScreen() {
             )
         }
 
-        // ---- UI 布局选择 ----
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            insideMargin = PaddingValues(vertical = 8.dp)
-        ) {
-            Text(
-                text = stringResource(R.string.neko_ui_mode),
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                color = colorScheme.onSurfaceVariantSummary
-            )
-            listOf(
-                "miuix" to "Miuix (原版)",
-                "material" to "Material (原版)",
-                "neko" to "NekoUI (新)"
-            ).forEach { (value, label) ->
-                val isSelected = nekoConfig.uiLayout == value
-                BasicComponent(
-                    title = label,
-                    endActions = {
-                        if (isSelected) {
-                            androidx.compose.material3.Icon(
-                                imageVector = Icons.Rounded.Check,
-                                contentDescription = null,
-                                tint = colorScheme.primary,
-                                modifier = Modifier.size(20.dp)
-                            )
-                        }
-                    },
-                    onClick = {
-                        scope.launch { NekoBackgroundManager.updateUiLayout(context, value) }
-                    }
-                )
-            }
-        }
-
         // ---- 显示效果设置 ----
         Card(
             modifier = Modifier.fillMaxWidth(),

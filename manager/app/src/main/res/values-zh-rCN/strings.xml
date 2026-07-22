@@ -296,4 +296,17 @@
     <string name="nav_rail_collapse">收起导航栏</string>
     <string name="settings_navigation_badge">模块角标</string>
     <string name="settings_navigation_badge_summary">在导航栏显示已启用模块数量，有可更新模块时以红色显示可更新数量</string>
+    <string name="neko_color_picker_title">拾色器</string>
+    <string name="neko_color_hex">Hex</string>
+    <string name="neko_color_preset">预设</string>
+    <string name="neko_color_confirm">确定</string>
+    <string name="neko_color_cancel">取消</string>
+    <string name="neko_card_edit_title">编辑卡片</string>
+    <string name="neko_card_height">高度: %ddp</string>
+    <string name="neko_card_corner">圆角: %ddp</string>
+    <string name="neko_card_alpha">透明度: %d%%</string>
+    <string name="neko_card_reset">重置</string>
+    <string name="neko_image_set">已设置图片</string>
+    <string name="neko_video_set">已设置视频</string>
+    <string name="neko_hidden_card_count">%d 个卡片被隐藏</string>
 </resources>
