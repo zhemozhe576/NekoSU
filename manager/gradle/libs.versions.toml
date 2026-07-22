@@ -19,8 +19,8 @@ miuix = "0.9.3"
 okhttp = "5.4.0"
 hiddenapibypass = "6.1"
 appiconloader = "1.5.0"
-coil = "2.6.0"
-datastore = "1.1.1"
+coil = "2.7.0"
+datastore = "1.2.1"
 
 [plugins]
 agp-app = { id = "com.android.application", version.ref = "agp" }
@@ -84,4 +84,4 @@ material-kolor = { group = "com.materialkolor", name = "material-kolor", version
 appiconloader = { module = "me.zhanghai.android.appiconloader:appiconloader", version.ref = "appiconloader" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.8.0" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.11.0" }
