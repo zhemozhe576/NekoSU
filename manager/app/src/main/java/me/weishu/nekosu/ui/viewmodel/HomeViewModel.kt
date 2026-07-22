@@ -99,11 +99,23 @@ class HomeViewModel(
             // Fallback when JNI calls fail (no NekoSU kernel)
             HomeUiState(
                 kernelVersion = getKernelVersion(),
+                ksuVersion = null,
+                managerUAPIVersion = 0,
+                kernelUAPIVersion = null,
+                lkmMode = null,
                 isManager = false,
                 isManagerPrBuild = BuildConfig.IS_PR_BUILD,
+                isKernelPrBuild = false,
+                requiresNewKernel = false,
+                uapiMismatch = false,
+                isRootAvailable = false,
+                isSafeMode = false,
+                isLateLoadMode = false,
                 checkUpdateEnabled = settingsRepo.checkUpdate,
                 latestVersionInfo = LatestVersionInfo(),
                 currentManagerVersionCode = -1,
+                superuserCount = 0,
+                moduleCount = 0,
                 systemInfo = SystemInfo(
                     kernelVersion = Os.uname().release,
                     managerVersion = "Unknown",
