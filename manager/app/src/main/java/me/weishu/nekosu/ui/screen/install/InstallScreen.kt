@@ -38,6 +38,7 @@ import me.weishu.nekosu.ui.util.getDefaultPartition
 import me.weishu.nekosu.ui.util.getSlotSuffix
 import me.weishu.nekosu.ui.util.isAbDevice
 import me.weishu.nekosu.ui.util.rootAvailable
+import me.weishu.nekosu.data.repository.SettingsRepositoryImpl
 
 @Composable
 fun InstallScreen() {
@@ -58,6 +59,8 @@ fun InstallScreen() {
     var enableAdb by rememberSaveable { mutableStateOf(false) }
     var forceBackup by rememberSaveable { mutableStateOf(false) }
     var ksuCompatible by rememberSaveable { mutableStateOf(false) }
+    val settingsRepo = remember { SettingsRepositoryImpl() }
+    var debugMode by rememberSaveable { mutableStateOf(settingsRepo.debugMode) }
 
     val currentKmi by produceState(initialValue = "") { value = getCurrentKmi() }
     val partitions by produceState(initialValue = emptyList()) { value = getAvailablePartitions() }
@@ -176,6 +179,7 @@ fun InstallScreen() {
         forceBackup = forceBackup,
         canForceBackup = installMethod is InstallMethod.SelectFile,
         ksuCompatible = ksuCompatible,
+        debugMode = debugMode,
     )
     val actions = InstallScreenActions(
         onBack = dropUnlessResumed { navigator.pop() },
@@ -215,6 +219,10 @@ fun InstallScreen() {
         },
         onSelectKsuCompatible = {
             ksuCompatible = it
+        },
+        onSelectDebugMode = {
+            debugMode = it
+            settingsRepo.debugMode = it
         }
     )
 

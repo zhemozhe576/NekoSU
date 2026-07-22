@@ -248,6 +248,18 @@ internal fun InstallScreenMiuix(
                             }
                         }
                     }
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 12.dp),
+                    ) {
+                        CheckboxPreference(
+                            title = stringResource(id = R.string.neko_debug_mode),
+                            summary = stringResource(id = R.string.neko_debug_mode_summary),
+                            checked = uiState.debugMode,
+                            onCheckedChange = actions.onSelectDebugMode
+                        )
+                    }
                     TextButton(
                         modifier = Modifier
                             .fillMaxWidth()

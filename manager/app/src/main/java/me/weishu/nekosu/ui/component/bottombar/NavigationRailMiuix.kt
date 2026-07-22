@@ -5,7 +5,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import me.weishu.nekosu.R
 import me.weishu.nekosu.ui.LocalMainPagerState
-import me.weishu.nekosu.ui.util.isFullFeatured
 import top.yukonga.miuix.kmp.basic.NavigationRail
 import top.yukonga.miuix.kmp.basic.NavigationRailItem
 import top.yukonga.miuix.kmp.basic.rememberNavigationRailState
@@ -16,8 +15,6 @@ fun NavigationRailMiuix(
     moduleBadge: ModuleBadgeState,
     modifier: Modifier = Modifier,
 ) {
-    if (!isFullFeatured()) return
-
     val mainState = LocalMainPagerState.current
 
     val items = BottomBarDestination.entries.map { destination ->

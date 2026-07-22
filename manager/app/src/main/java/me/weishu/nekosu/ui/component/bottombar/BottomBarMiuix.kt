@@ -29,7 +29,6 @@ import me.weishu.nekosu.ui.component.FloatingBottomBarItem
 import me.weishu.nekosu.ui.theme.LocalEnableFloatingBottomBar
 import me.weishu.nekosu.ui.theme.LocalEnableFloatingBottomBarBlur
 import me.weishu.nekosu.ui.util.BlurredBar
-import me.weishu.nekosu.ui.util.isFullFeatured
 import top.yukonga.miuix.kmp.basic.Badge
 import top.yukonga.miuix.kmp.basic.BadgedBox
 import top.yukonga.miuix.kmp.basic.Icon
@@ -48,8 +47,6 @@ fun BottomBarMiuix(
     moduleBadge: ModuleBadgeState,
     modifier: Modifier,
 ) {
-    if (!isFullFeatured()) return
-
     val mainState = LocalMainPagerState.current
     val enableFloatingBottomBar = LocalEnableFloatingBottomBar.current
     val enableFloatingBottomBarBlur = LocalEnableFloatingBottomBarBlur.current

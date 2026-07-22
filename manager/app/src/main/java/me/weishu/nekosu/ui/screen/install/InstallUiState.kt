@@ -19,6 +19,7 @@ internal data class InstallUiState(
     val forceBackup: Boolean,
     val canForceBackup: Boolean,
     val ksuCompatible: Boolean,
+    val debugMode: Boolean,
 )
 
 @Immutable
@@ -35,4 +36,5 @@ internal data class InstallScreenActions(
     val onSelectEnableAdb: (Boolean) -> Unit,
     val onSelectForceBackup: (Boolean) -> Unit,
     val onSelectKsuCompatible: (Boolean) -> Unit,
+    val onSelectDebugMode: (Boolean) -> Unit,
 )
