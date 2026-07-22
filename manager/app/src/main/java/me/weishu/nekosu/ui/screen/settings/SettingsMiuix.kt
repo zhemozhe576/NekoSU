@@ -481,4 +481,5 @@ fun SettingPagerMiuix(
                 }
             }
         }
+    }
 }

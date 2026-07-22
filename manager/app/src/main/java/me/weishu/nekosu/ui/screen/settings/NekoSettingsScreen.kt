@@ -342,7 +342,6 @@ fun NekoSettingsScreen() {
             )
         }
         Spacer(modifier = Modifier.height(80.dp))
-        } // Column
+    } // Column
     } // Scaffold content
-    } // Scaffold
 } // function
