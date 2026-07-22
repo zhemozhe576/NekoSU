@@ -445,7 +445,6 @@ pub struct BootPatchArgs {
     pub flash: bool,
 
     /// use KSU compatible mode (use kernelsu.ko instead of nekosu.ko)
-    #[cfg(target_os = "android")]
     #[arg(long, default_value = "false")]
     pub ksu_compatible: bool,
 
@@ -532,6 +531,7 @@ pub fn patch(args: BootPatchArgs) -> Result<()> {
             flash,
             #[cfg(target_os = "android")]
             backup,
+            ksu_compatible,
             #[cfg(target_os = "android")]
             partition,
             no_custom_rc,
@@ -643,7 +643,7 @@ pub fn patch(args: BootPatchArgs) -> Result<()> {
             Box::new(map_file(&kmod_path)?)
         } else {
             println!("- KMI: {kmi}");
-            let name = if boot_patch.ksu_compatible {
+            let name = if ksu_compatible {
                 format!("{kmi}_kernelsu.ko")
             } else {
                 let neko_name = format!("{kmi}_nekosu.ko");
