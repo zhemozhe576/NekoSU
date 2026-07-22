@@ -8,9 +8,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.Json
+import me.weishu.nekosu.ui.theme.NekoUiConfig
 import me.weishu.nekosu.BuildConfig
 import me.weishu.nekosu.Natives
 import me.weishu.nekosu.data.repository.SettingsRepository
@@ -49,8 +54,21 @@ class HomeViewModel(
     private fun buildState(): HomeUiState {
         val kernelVersion = getKernelVersion()
         val isManager = Natives.isManager
-        val ksuVersion = if (isManager) Natives.version else null
-        val kernelUAPIVersion = if (isManager) Natives.kernelUAPIVersion else null
+        val hasKsuDriver = Natives.version != -1
+
+        val ksuCompatibleMode = runBlocking {
+            try {
+                val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }
+                ksuApp.nekoDataStore.data.map { prefs ->
+                    prefs[androidx.datastore.preferences.core.stringPreferencesKey("neko_ui_config_v2")]?.let { jsonStr ->
+                        json.decodeFromString<NekoUiConfig>(jsonStr).ksuCompatibleMode
+                    } ?: false
+                }.first()
+            } catch (_: Exception) { false }
+        }
+
+        val ksuVersion = if (isManager || (ksuCompatibleMode && hasKsuDriver)) Natives.version else null
+        val kernelUAPIVersion = if (isManager || (ksuCompatibleMode && hasKsuDriver)) Natives.kernelUAPIVersion else null
         val managerUAPIVersion = Natives.managerUAPIVersion
         val lkmMode = ksuVersion?.let { if (kernelVersion.isGKI()) Natives.isLkmMode else null }
         val isRootAvailable = rootAvailable()

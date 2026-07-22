@@ -21,8 +21,10 @@ import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.dropUnlessResumed
 import kotlinx.coroutines.launch
+import me.weishu.nekosu.Natives
 import me.weishu.nekosu.R
 import me.weishu.nekosu.getKernelVersion
+import me.weishu.nekosu.ui.theme.NekoBackgroundManager
 import me.weishu.nekosu.ui.LocalUiMode
 import me.weishu.nekosu.ui.UiMode
 import me.weishu.nekosu.ui.component.choosekmidialog.ChooseKmiDialog
@@ -105,8 +107,19 @@ fun InstallScreen() {
         }
     }
 
+    val hasKsuDriver = me.weishu.nekosu.Natives.version != -1
+
     val onInstall = {
         installMethod?.let { method ->
+            if (ksuCompatible && hasKsuDriver) {
+                // KSU already installed and coexist mode enabled, skip boot patching
+                scope.launch {
+                    NekoBackgroundManager.updateKsuCompatibleMode(context, true)
+                }
+                Toast.makeText(context, "KSU 共存模式已启用", Toast.LENGTH_SHORT).show()
+                navigator.pop()
+                return@let
+            }
             navigator.push(
                 Route.Flash(
                     FlashIt.FlashBoot(

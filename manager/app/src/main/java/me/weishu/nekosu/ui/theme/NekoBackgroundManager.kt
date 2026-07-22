@@ -51,7 +51,8 @@ data class NekoUiConfig(
     val uiLayout: String = "miuix",
     val enableGlassmorphism: Boolean = true,
     val cardTransparency: Float = 0.72f,
-    val enableCardShadow: Boolean = true
+    val enableCardShadow: Boolean = true,
+    val ksuCompatibleMode: Boolean = false
 )
 
 object NekoBackgroundManager {
@@ -145,6 +146,13 @@ object NekoBackgroundManager {
                     enableCardShadow = enableCardShadow ?: current.enableCardShadow
                 )
             )
+        }
+    }
+
+    suspend fun updateKsuCompatibleMode(context: Context, enabled: Boolean) {
+        context.nekoDataStore.edit { prefs ->
+            val current = getCurrentConfig(prefs)
+            prefs[UI_CONFIG_KEY] = json.encodeToString(current.copy(ksuCompatibleMode = enabled))
         }
     }
 

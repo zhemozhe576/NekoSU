@@ -174,6 +174,7 @@ fun HomePagerMiuix(
                             actions = actions,
                         )
                         InfoCard(systemInfo = state.systemInfo)
+                        NekoOutlookCard(onOpenUrl = actions.onOpenUrl)
                         DonateCard(onOpenUrl = actions.onOpenUrl)
                         LearnMoreCard(onOpenUrl = actions.onOpenUrl)
                     }
@@ -483,6 +484,30 @@ private fun LearnMoreCard(
 }
 
 @Composable
+private fun NekoOutlookCard(onOpenUrl: (String) -> Unit) {
+    val nekoConfig by rememberNekoUiConfig()
+    NekoCard(
+        cardId = "home_neko_outlook",
+        modifier = Modifier.fillMaxWidth(),
+        nekoConfig = nekoConfig
+    ) {
+        BasicComponent(
+            title = stringResource(R.string.neko_outlook_title),
+            summary = stringResource(R.string.neko_outlook_content),
+            endActions = {
+                Icon(
+                    imageVector = MiuixIcons.Link,
+                    tint = colorScheme.onSurface,
+                    contentDescription = null
+                )
+            },
+            onClick = { onOpenUrl("https://github.com/zhemozhe576/NekoSU") },
+            insideMargin = PaddingValues(18.dp)
+        )
+    }
+}
+
+@Composable
 private fun DonateCard(onOpenUrl: (String) -> Unit) {
     val nekoConfig by rememberNekoUiConfig()
     NekoCard(
@@ -644,6 +669,7 @@ private fun HomeScreenPreviewContent(
                 actions = actions
             )
             InfoCard(previewSystemInfo.copy(selinuxStatus = selinuxStatus))
+            NekoOutlookCard(onOpenUrl = {})
             DonateCard(onOpenUrl = {})
             LearnMoreCard(onOpenUrl = {})
         }
