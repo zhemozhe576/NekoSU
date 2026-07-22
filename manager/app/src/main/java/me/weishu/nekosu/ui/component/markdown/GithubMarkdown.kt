@@ -391,6 +391,25 @@ private fun getMarkdownColors(containerColor: androidx.compose.ui.graphics.Color
                 fgDefault = cssColorFromArgb(MiuixTheme.colorScheme.onSurface.toArgb()),
                 fgLink = cssColorFromArgb(MiuixTheme.colorScheme.primary.toArgb())
             )
+        UiMode.Neko -> {
+            val bgArgb = containerColor?.toArgb() ?: MiuixTheme.colorScheme.surfaceContainer.toArgb()
+            val bgLuminance = relativeLuminance(bgArgb)
+
+            fun makeVariant(delta: Float, ratio: Double): Int {
+                val candidate = adjustLightnessArgb(bgArgb, delta)
+                val madeLighter = delta > 0f
+                return ensureVisibleByMix(bgArgb, candidate, ratio, madeLighter)
+            }
+
+            val codeDelta = if (bgLuminance > 0.6) -0.05f else 0.05f
+            val rowAltDelta = if (bgLuminance > 0.6) -0.02f else 0.02f
+
+            MarkdownColors(
+                bgCode = cssColorFromArgb(makeVariant(codeDelta, 1.1)),
+                bgRowAlt = cssColorFromArgb(makeVariant(rowAltDelta, 1.05)),
+                fgDefault = cssColorFromArgb(MiuixTheme.colorScheme.onSurface.toArgb()),
+                fgLink = cssColorFromArgb(MiuixTheme.colorScheme.primary.toArgb())
+            )
         }
     }
 }

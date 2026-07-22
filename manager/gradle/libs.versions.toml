@@ -84,3 +84,4 @@ material-kolor = { group = "com.materialkolor", name = "material-kolor", version
 appiconloader = { module = "me.zhanghai.android.appiconloader:appiconloader", version.ref = "appiconloader" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.8.0" }

@@ -125,6 +125,13 @@ private fun LoadingContent() {
             ) {
                 InfiniteProgressIndicator()
             }
+        UiMode.Neko -> {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                InfiniteProgressIndicator()
+            }
         }
 
         UiMode.Material -> {

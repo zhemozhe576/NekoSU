@@ -73,5 +73,11 @@ fun SuperUserPager(
             actions = actions,
             bottomInnerPadding = bottomInnerPadding,
         )
+        UiMode.Neko -> SuperUserPagerMiuix(
+            uiState = uiState,
+            actions = actions,
+            bottomInnerPadding = bottomInnerPadding,
+        )
+
     }
 }

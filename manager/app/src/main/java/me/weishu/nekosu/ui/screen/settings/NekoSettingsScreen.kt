@@ -164,9 +164,19 @@ fun NekoSettingsScreen() {
                 "material" to "Material (原版)",
                 "neko" to "NekoUI (新)"
             ).forEach { (value, label) ->
+                val isSelected = nekoConfig.uiLayout == value
                 BasicComponent(
                     title = label,
-                    isChecked = nekoConfig.uiLayout == value,
+                    endActions = {
+                        if (isSelected) {
+                            androidx.compose.material3.Icon(
+                                imageVector = androidx.compose.material.icons.Icons.Rounded.Check,
+                                contentDescription = null,
+                                tint = colorScheme.primary,
+                                modifier = Modifier.size(20.dp)
+                            )
+                        }
+                    },
                     onClick = {
                         scope.launch { NekoBackgroundManager.updateUiLayout(context, value) }
                     }

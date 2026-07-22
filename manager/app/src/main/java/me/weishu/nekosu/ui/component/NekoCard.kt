@@ -40,6 +40,7 @@ import me.weishu.nekosu.ui.theme.CardConfig
 import me.weishu.nekosu.ui.theme.NekoBackgroundManager
 import me.weishu.nekosu.ui.theme.NekoUiConfig
 import top.yukonga.miuix.kmp.basic.Card
+import top.yukonga.miuix.kmp.basic.CardDefaults
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.theme.MiuixTheme.colorScheme
@@ -55,7 +56,7 @@ fun NekoCard(
     showIndication: Boolean = true,
     defaultBgColor: Color = colorScheme.surface,
     nekoConfig: NekoUiConfig = NekoUiConfig(),
-    content: @Composable () -> Unit
+    content: @Composable ColumnScope.() -> Unit
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -123,7 +124,9 @@ fun NekoCard(
                 },
             insideMargin = if (cardConfig?.backgroundType == "image") PaddingValues(0.dp) else insideMargin,
             showIndication = showIndication,
-            backgroundColor = actualBgColor
+            colors = CardDefaults.defaultColors(
+                color = actualBgColor
+            )
         ) {
             if (cardConfig?.backgroundType == "image" && cardConfig.backgroundUri.isNotEmpty()) {
                 Box(modifier = Modifier.fillMaxWidth()) {
@@ -140,8 +143,8 @@ fun NekoCard(
                         modifier = Modifier.matchParentSize()
                             .background(actualBgColor.copy(alpha = 0.45f))
                     )
-                    Box(modifier = Modifier.padding(insideMargin)) {
-                        content()
+                    Column(modifier = Modifier.padding(insideMargin)) {
+                        this@Column.content()
                     }
                 }
             } else if (
@@ -163,8 +166,8 @@ fun NekoCard(
                     modifier = Modifier.fillMaxWidth()
                         .background(Brush.verticalGradient(listOf(startColor, endColor)))
                 ) {
-                    Box(modifier = Modifier.padding(insideMargin)) {
-                        content()
+                    Column(modifier = Modifier.padding(insideMargin)) {
+                        this@Column.content()
                     }
                 }
             } else {
@@ -316,7 +319,7 @@ fun <T> NekoCardItemWrapper(
     insideMargin: PaddingValues = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
     onClick: (T) -> Unit,
     onLongPress: ((T) -> Unit)? = null,
-    content: @Composable (T) -> Unit
+    content: @Composable ColumnScope.(T) -> Unit
 ) {
     val cardId = cardIdProvider(item)
     NekoCard(

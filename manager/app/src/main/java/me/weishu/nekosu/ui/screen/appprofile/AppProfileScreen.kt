@@ -143,5 +143,10 @@ fun AppProfileScreen(uid: Int) {
             actions = actions,
             snackBarHost = snackbarHost,
         )
+        UiMode.Neko -> AppProfileScreenMiuix(
+            state = state,
+            actions = actions,
+        )
+
     }
 }

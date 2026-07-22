@@ -117,6 +117,11 @@ fun NekoSUTheme(
             appSettings = appSettings,
             content = content
         )
+        UiMode.Neko -> MiuixNekoSUTheme(
+            appSettings = appSettings,
+            content = content
+        )
+
     }
 }
 

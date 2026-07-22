@@ -43,6 +43,7 @@ fun MarkdownContent(
     val containerColor = when (uiMode) {
         UiMode.Material -> MaterialTheme.colorScheme.surfaceContainerHigh
         UiMode.Miuix -> null
+        UiMode.Neko -> null
     }
     Box(
         modifier = Modifier

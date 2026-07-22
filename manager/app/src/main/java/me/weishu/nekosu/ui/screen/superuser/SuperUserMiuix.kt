@@ -498,6 +498,7 @@ private fun SimpleAppItem(
     app: AppInfo,
     matched: Boolean = false,
 ) {
+    val nekoConfig by rememberNekoUiConfig()
     Row {
         Box(
             modifier = Modifier
@@ -538,6 +539,7 @@ private fun GroupItem(
     onToggleExpand: () -> Unit,
     onClickPrimary: () -> Unit,
 ) {
+    val nekoConfig by rememberNekoUiConfig()
     val isInDarkTheme = isInDarkTheme()
     val bg = colorScheme.secondaryContainer.copy(alpha = 0.8f)
     val rootBg = colorScheme.tertiaryContainer.copy(alpha = 0.6f)

@@ -172,5 +172,13 @@ fun ModulePager(
             actions = actions,
             bottomInnerPadding = bottomInnerPadding,
         )
+        UiMode.Neko -> ModulePagerMiuix(
+            uiState = rawUiState,
+            confirmDialogState = rawUiState.confirmDialogState,
+            moduleEvent = viewModel.moduleEvent,
+            actions = actions,
+            bottomInnerPadding = bottomInnerPadding,
+        )
+
     }
 }

@@ -27,6 +27,8 @@ data class BackgroundConfig(
     val scaleType: String = "crop"
 )
 
+fun BackgroundConfig.isActive(): Boolean = type != "none" && uri.isNotEmpty()
+
 @Serializable
 data class CardConfig(
     val id: String = "",

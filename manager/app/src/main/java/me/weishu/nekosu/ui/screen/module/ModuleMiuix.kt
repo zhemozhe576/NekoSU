@@ -749,6 +749,7 @@ private fun ModuleList(
 ) {
     val loadingDialog = rememberLoadingDialog()
     val scope = rememberCoroutineScope()
+    val nekoConfig by rememberNekoUiConfig()
     LazyColumn(
         state = listState,
         modifier = modifier.fillMaxHeight(),

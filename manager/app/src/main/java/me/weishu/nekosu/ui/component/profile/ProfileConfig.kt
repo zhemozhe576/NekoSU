@@ -30,6 +30,14 @@ fun AppProfileConfig(
             profile = profile,
             onProfileChange = onProfileChange
         )
+        UiMode.Neko -> AppProfileConfigMiuix(
+            modifier = modifier,
+            fixedName = fixedName,
+            enabled = enabled,
+            profile = profile,
+            onProfileChange = onProfileChange
+        )
+
     }
 }
 
@@ -56,6 +64,14 @@ fun RootProfileConfig(
             profile = profile,
             onProfileChange = onProfileChange
         )
+        UiMode.Neko -> RootProfileConfigMiuix(
+            modifier = modifier,
+            fixedName = fixedName,
+            enabled = enabled,
+            profile = profile,
+            onProfileChange = onProfileChange
+        )
+
     }
 }
 
@@ -82,5 +98,13 @@ fun TemplateConfig(
             onManageTemplate = onManageTemplate,
             onProfileChange = onProfileChange
         )
+        UiMode.Neko -> TemplateConfigMiuix(
+            modifier = modifier,
+            profile = profile,
+            onViewTemplate = onViewTemplate,
+            onManageTemplate = onManageTemplate,
+            onProfileChange = onProfileChange
+        )
+
     }
 }

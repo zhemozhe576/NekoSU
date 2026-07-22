@@ -84,5 +84,11 @@ fun HomePager(
             actions = actions,
             bottomInnerPadding = bottomInnerPadding,
         )
+        UiMode.Neko -> HomePagerMiuix(
+            state = uiState,
+            actions = actions,
+            bottomInnerPadding = bottomInnerPadding,
+        )
+
     }
 }
