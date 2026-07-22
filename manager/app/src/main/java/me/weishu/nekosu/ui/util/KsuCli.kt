@@ -69,7 +69,7 @@ fun Uri.getFileName(context: Context): String? {
 }
 
 fun createRootShell(globalMnt: Boolean = false): Shell {
-    val debugMode = SettingsRepositoryImpl(ksuApp).debugMode
+    val debugMode = SettingsRepositoryImpl().debugMode
     Shell.enableVerboseLogging = BuildConfig.DEBUG || debugMode
     val builder = Shell.Builder.create()
     return try {
@@ -515,7 +515,7 @@ fun restartApp(packageName: String, userId: Int? = null) {
 }
 
 fun isFullFeatured(): Boolean {
-    val debugMode = SettingsRepositoryImpl(ksuApp).debugMode
+    val debugMode = SettingsRepositoryImpl().debugMode
     if (debugMode) return true
     return Natives.isManager && !Natives.requireNewKernel() && rootAvailable()
 }

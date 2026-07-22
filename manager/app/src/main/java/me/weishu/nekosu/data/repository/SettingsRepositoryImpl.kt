@@ -90,7 +90,7 @@ class SettingsRepositoryImpl : SettingsRepository {
         set(value) = prefs.edit { putBoolean("enable_web_debugging", value) }
 
     override var debugMode: Boolean
-        get() = prefs.getBoolean("debug_mode", BuildConfig.DEBUG)
+        get() = prefs.getBoolean("debug_mode", false)
         set(value) = prefs.edit { putBoolean("debug_mode", value) }
 
     override var moduleSortEnabledFirst: Boolean
