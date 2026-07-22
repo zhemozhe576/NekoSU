@@ -517,5 +517,7 @@ fun restartApp(packageName: String, userId: Int? = null) {
 fun isFullFeatured(): Boolean {
     val debugMode = SettingsRepositoryImpl().debugMode
     if (debugMode) return true
-    return Natives.isManager && !Natives.requireNewKernel() && rootAvailable()
+    return runCatching {
+        Natives.isManager && !Natives.requireNewKernel() && rootAvailable()
+    }.getOrDefault(false)
 }

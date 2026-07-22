@@ -104,8 +104,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val isManager = Natives.isManager
-        if (isManager && !Natives.requireNewKernel()) install()
+        runCatching {
+            val isManager = Natives.isManager
+            if (isManager && !Natives.requireNewKernel()) install()
+        }
 
         if (savedInstanceState == null) intent?.let { intentChannel.trySend(it) }
 

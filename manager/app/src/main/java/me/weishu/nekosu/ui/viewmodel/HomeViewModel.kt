@@ -54,45 +54,65 @@ class HomeViewModel(
     }
 
     private fun buildState(): HomeUiState {
-        val debugMode = settingsRepo.debugMode
-        val kernelVersion = getKernelVersion()
-        val isManager = if (debugMode) true else Natives.isManager
-        val ksuVersion = if (isManager) (if (debugMode) 12345 else Natives.version) else null
-        val kernelUAPIVersion = if (isManager) (if (debugMode) 1 else Natives.kernelUAPIVersion) else null
-        val managerUAPIVersion = Natives.managerUAPIVersion
-        val lkmMode = ksuVersion?.let { if (kernelVersion.isGKI()) (if (debugMode) true else Natives.isLkmMode) else null }
-        val isRootAvailable = debugMode || rootAvailable()
-        val managerVersion = getManagerVersion(ksuApp)
+        return runCatching {
+            val debugMode = settingsRepo.debugMode
+            val kernelVersion = getKernelVersion()
+            val isManager = if (debugMode) true else Natives.isManager
+            val ksuVersion = if (isManager) (if (debugMode) 12345 else Natives.version) else null
+            val kernelUAPIVersion = if (isManager) (if (debugMode) 1 else Natives.kernelUAPIVersion) else null
+            val managerUAPIVersion = Natives.managerUAPIVersion
+            val lkmMode = ksuVersion?.let { if (kernelVersion.isGKI()) (if (debugMode) true else Natives.isLkmMode) else null }
+            val isRootAvailable = debugMode || rootAvailable()
+            val managerVersion = getManagerVersion(ksuApp)
 
-        return HomeUiState(
-            kernelVersion = kernelVersion,
-            ksuVersion = ksuVersion,
-            lkmMode = lkmMode,
-            isManager = isManager,
-            isManagerPrBuild = BuildConfig.IS_PR_BUILD,
-            isKernelPrBuild = if (debugMode) false else Natives.isPrBuild,
-            requiresNewKernel = if (debugMode) false else (isManager && Natives.requireNewKernel()),
-            uapiMismatch = if (debugMode) false else (isManager && Natives.checkUAPIMismatch()),
-            kernelUAPIVersion = kernelUAPIVersion,
-            managerUAPIVersion = managerUAPIVersion,
-            isRootAvailable = isRootAvailable,
-            isSafeMode = if (debugMode) false else Natives.isSafeMode,
-            isLateLoadMode = if (debugMode) false else Natives.isLateLoadMode,
-            checkUpdateEnabled = settingsRepo.checkUpdate,
-            latestVersionInfo = LatestVersionInfo(),
-            currentManagerVersionCode = managerVersion.versionCode,
-            superuserCount = if (debugMode) 5 else getSuperuserCount(),
-            moduleCount = if (debugMode) 10 else getModuleCount(),
-            systemInfo = SystemInfo(
-                kernelVersion = Os.uname().release,
-                managerVersion = "${managerVersion.versionName} (${managerVersion.versionCode}-${managerUAPIVersion})",
-                deviceModel = resolveDeviceName(),
-                fingerprint = Build.FINGERPRINT,
-                selinuxStatus = if (debugMode) "Enforcing" else getSELinuxStatusRaw(),
-                seccompStatus = if (debugMode) 2 else runCatching {
-                    Os.prctl(21 /* PR_GET_SECCOMP */, 0, 0, 0, 0)
-                }.getOrDefault(-1),
-            ),
-        )
+            HomeUiState(
+                kernelVersion = kernelVersion,
+                ksuVersion = ksuVersion,
+                lkmMode = lkmMode,
+                isManager = isManager,
+                isManagerPrBuild = BuildConfig.IS_PR_BUILD,
+                isKernelPrBuild = if (debugMode) false else Natives.isPrBuild,
+                requiresNewKernel = if (debugMode) false else (isManager && Natives.requireNewKernel()),
+                uapiMismatch = if (debugMode) false else (isManager && Natives.checkUAPIMismatch()),
+                kernelUAPIVersion = kernelUAPIVersion,
+                managerUAPIVersion = managerUAPIVersion,
+                isRootAvailable = isRootAvailable,
+                isSafeMode = if (debugMode) false else Natives.isSafeMode,
+                isLateLoadMode = if (debugMode) false else Natives.isLateLoadMode,
+                checkUpdateEnabled = settingsRepo.checkUpdate,
+                latestVersionInfo = LatestVersionInfo(),
+                currentManagerVersionCode = managerVersion.versionCode,
+                superuserCount = if (debugMode) 5 else getSuperuserCount(),
+                moduleCount = if (debugMode) 10 else getModuleCount(),
+                systemInfo = SystemInfo(
+                    kernelVersion = Os.uname().release,
+                    managerVersion = "${managerVersion.versionName} (${managerVersion.versionCode}-${managerUAPIVersion})",
+                    deviceModel = resolveDeviceName(),
+                    fingerprint = Build.FINGERPRINT,
+                    selinuxStatus = if (debugMode) "Enforcing" else getSELinuxStatusRaw(),
+                    seccompStatus = if (debugMode) 2 else runCatching {
+                        Os.prctl(21 /* PR_GET_SECCOMP */, 0, 0, 0, 0)
+                    }.getOrDefault(-1),
+                ),
+            )
+        }.getOrElse {
+            // Fallback when JNI calls fail (no NekoSU kernel)
+            HomeUiState(
+                kernelVersion = getKernelVersion(),
+                isManager = false,
+                isManagerPrBuild = BuildConfig.IS_PR_BUILD,
+                checkUpdateEnabled = settingsRepo.checkUpdate,
+                latestVersionInfo = LatestVersionInfo(),
+                currentManagerVersionCode = -1,
+                systemInfo = SystemInfo(
+                    kernelVersion = Os.uname().release,
+                    managerVersion = "Unknown",
+                    deviceModel = resolveDeviceName(),
+                    fingerprint = Build.FINGERPRINT,
+                    selinuxStatus = getSELinuxStatusRaw(),
+                    seccompStatus = -1,
+                ),
+            )
+        }
     }
 }
