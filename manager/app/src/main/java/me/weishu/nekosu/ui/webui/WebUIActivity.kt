@@ -118,14 +118,7 @@ private fun MainContent(activity: ComponentActivity, onFinish: () -> Unit) {
 @Composable
 private fun LoadingContent() {
     when (LocalUiMode.current) {
-        UiMode.Miuix -> {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                InfiniteProgressIndicator()
-            }
-        UiMode.Neko -> {
+        UiMode.Miuix, UiMode.Neko -> {
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center

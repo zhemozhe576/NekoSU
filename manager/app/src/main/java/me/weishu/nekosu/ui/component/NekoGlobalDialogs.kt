@@ -1,6 +1,7 @@
 package me.weishu.nekosu.ui.component
 
 import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.launch
 import me.weishu.nekosu.ui.theme.CardConfig

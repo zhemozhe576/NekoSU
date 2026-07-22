@@ -31,6 +31,7 @@ import androidx.compose.material.icons.rounded.RemoveModerator
 import androidx.compose.material.icons.rounded.Update
 import androidx.compose.material.icons.rounded.UploadFile
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -47,6 +48,7 @@ import me.weishu.nekosu.ui.component.miuix.SendLogDialog
 import me.weishu.nekosu.ui.component.uninstalldialog.UninstallDialog
 import me.weishu.nekosu.ui.theme.LocalEnableBlur
 import me.weishu.nekosu.ui.theme.rememberNekoUiConfig
+import me.weishu.nekosu.ui.theme.isActive
 import me.weishu.nekosu.ui.util.BlurredBar
 import me.weishu.nekosu.ui.util.rememberBlurBackdrop
 import top.yukonga.miuix.kmp.basic.Card

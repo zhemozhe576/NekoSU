@@ -103,5 +103,3 @@ private fun NekoVideoBackground(
         }
     }
 }
-
-fun BackgroundConfig.isActive(): Boolean = type != "none" && uri.isNotEmpty()

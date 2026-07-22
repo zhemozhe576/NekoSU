@@ -5,6 +5,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -15,6 +16,8 @@ import kotlinx.coroutines.launch
 import me.weishu.nekosu.R
 import me.weishu.nekosu.ui.theme.BackgroundConfig
 import me.weishu.nekosu.ui.theme.NekoBackgroundManager
+import me.weishu.nekosu.ui.theme.isActive
+import androidx.compose.material.icons.rounded.Check
 import me.weishu.nekosu.ui.theme.rememberNekoUiConfig
 import top.yukonga.miuix.kmp.basic.*
 import top.yukonga.miuix.kmp.basic.Slider
@@ -170,7 +173,7 @@ fun NekoSettingsScreen() {
                     endActions = {
                         if (isSelected) {
                             androidx.compose.material3.Icon(
-                                imageVector = androidx.compose.material.icons.Icons.Rounded.Check,
+                                imageVector = Icons.Rounded.Check,
                                 contentDescription = null,
                                 tint = colorScheme.primary,
                                 modifier = Modifier.size(20.dp)

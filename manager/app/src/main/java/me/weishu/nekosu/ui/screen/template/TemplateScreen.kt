@@ -117,6 +117,11 @@ fun AppProfileTemplateScreen() {
                 UiMode.Material -> navigator.push(
                     Route.TemplateEditor(TemplateViewModel.TemplateInfo(), false)
                 )
+
+                UiMode.Neko -> navigator.navigateForResult(
+                    Route.TemplateEditor(TemplateViewModel.TemplateInfo(), false),
+                    requestKey,
+                )
             }
         },
         onOpenTemplate = { template ->
@@ -128,6 +133,11 @@ fun AppProfileTemplateScreen() {
 
                 UiMode.Material -> navigator.push(
                     Route.TemplateEditor(template, !template.local)
+                )
+
+                UiMode.Neko -> navigator.navigateForResult(
+                    Route.TemplateEditor(template, !template.local),
+                    requestKey,
                 )
             }
         },

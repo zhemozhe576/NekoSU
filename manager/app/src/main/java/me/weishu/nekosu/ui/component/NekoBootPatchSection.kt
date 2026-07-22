@@ -67,7 +67,7 @@ fun NekoBootPatchSection(
                     imageVector = if (ksuCompatible) Icons.Rounded.CheckCircle else Icons.Rounded.Info,
                     contentDescription = null,
                     modifier = Modifier.size(22.dp),
-                    tint = if (ksuCompatible) colorScheme.primary else colorScheme.onSurfaceVariant
+                    tint = if (ksuCompatible) colorScheme.primary else colorScheme.onSurfaceVariantSummary
                 )
             }
 
@@ -102,10 +102,11 @@ fun NekoBootPatchSection(
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            text = stringResource(R.string.neko_boot_patch_btn),
             onClick = { onPatchClick(ksuCompatible) },
             modifier = Modifier.fillMaxWidth()
-        )
+        ) {
+            Text(text = stringResource(R.string.neko_boot_patch_btn))
+        }
 
         if (ksuCompatible) {
             Spacer(modifier = Modifier.height(12.dp))

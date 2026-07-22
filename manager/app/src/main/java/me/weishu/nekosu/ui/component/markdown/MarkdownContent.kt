@@ -73,6 +73,7 @@ fun MarkdownContent(
                 when (LocalUiMode.current) {
                     UiMode.Material -> LoadingIndicator()
                     UiMode.Miuix -> InfiniteProgressIndicator()
+                    UiMode.Neko -> InfiniteProgressIndicator()
                 }
             }
         }

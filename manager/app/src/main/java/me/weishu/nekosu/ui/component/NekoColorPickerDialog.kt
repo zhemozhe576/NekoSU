@@ -1,6 +1,7 @@
 package me.weishu.nekosu.ui.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -70,12 +71,11 @@ fun NekoColorPickerDialog(
                                     Modifier.background(Color.Black.copy(alpha = 0.3f))
                                 else Modifier
                             )
-                    ) {
-                        androidx.compose.foundation.clickable {
-                            selectedColor = colorStr
-                            hexInput = colorStr.removePrefix("#")
-                        }
-                    }
+                            .clickable {
+                                selectedColor = colorStr
+                                hexInput = colorStr.removePrefix("#")
+                            }
+                    )
                 }
             }
 
