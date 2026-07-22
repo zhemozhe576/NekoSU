@@ -15,7 +15,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
+import androidx.datastore.preferences.core.stringPreferencesKey
 import me.weishu.nekosu.ui.theme.NekoUiConfig
+import me.weishu.nekosu.ui.theme.nekoDataStore
 import me.weishu.nekosu.BuildConfig
 import me.weishu.nekosu.Natives
 import me.weishu.nekosu.data.repository.SettingsRepository
@@ -60,7 +62,7 @@ class HomeViewModel(
             try {
                 val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }
                 ksuApp.nekoDataStore.data.map { prefs ->
-                    prefs[androidx.datastore.preferences.core.stringPreferencesKey("neko_ui_config_v2")]?.let { jsonStr ->
+                    prefs[stringPreferencesKey("neko_ui_config_v2")]?.let { jsonStr ->
                         json.decodeFromString<NekoUiConfig>(jsonStr).ksuCompatibleMode
                     } ?: false
                 }.first()
