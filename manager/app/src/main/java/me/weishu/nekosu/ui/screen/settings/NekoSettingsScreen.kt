@@ -17,6 +17,7 @@ import me.weishu.nekosu.R
 import me.weishu.nekosu.ui.theme.BackgroundConfig
 import me.weishu.nekosu.ui.theme.NekoBackgroundManager
 import me.weishu.nekosu.ui.theme.isActive
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
 import me.weishu.nekosu.ui.theme.rememberNekoUiConfig
 import top.yukonga.miuix.kmp.basic.*

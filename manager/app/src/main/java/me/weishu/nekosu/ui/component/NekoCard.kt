@@ -39,6 +39,7 @@ import me.weishu.nekosu.R
 import me.weishu.nekosu.ui.theme.CardConfig
 import me.weishu.nekosu.ui.theme.NekoBackgroundManager
 import me.weishu.nekosu.ui.theme.NekoUiConfig
+import me.weishu.nekosu.ui.theme.isActive
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.CardDefaults
 import top.yukonga.miuix.kmp.basic.Icon
