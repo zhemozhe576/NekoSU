@@ -107,19 +107,8 @@ fun InstallScreen() {
         }
     }
 
-    val hasKsuDriver = me.weishu.nekosu.Natives.version != -1
-
     val onInstall = {
         installMethod?.let { method ->
-            if (ksuCompatible && hasKsuDriver) {
-                // KSU already installed and coexist mode enabled, skip boot patching
-                scope.launch {
-                    NekoBackgroundManager.updateKsuCompatibleMode(context, true)
-                }
-                Toast.makeText(context, "KSU 共存模式已启用", Toast.LENGTH_SHORT).show()
-                navigator.pop()
-                return@let
-            }
             navigator.push(
                 Route.Flash(
                     FlashIt.FlashBoot(

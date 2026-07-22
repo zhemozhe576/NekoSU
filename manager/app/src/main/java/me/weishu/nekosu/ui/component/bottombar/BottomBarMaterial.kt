@@ -26,18 +26,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import me.weishu.nekosu.Natives
 import me.weishu.nekosu.R
 import me.weishu.nekosu.ui.LocalMainPagerState
-import me.weishu.nekosu.ui.util.rootAvailable
+import me.weishu.nekosu.ui.util.isFullFeatured
 
 @Composable
 fun BottomBarMaterial(moduleBadge: ModuleBadgeState) {
-    val isManager = Natives.isManager
-    val fullFeatured = isManager && !Natives.requireNewKernel() && rootAvailable()
     val mainPagerState = LocalMainPagerState.current
 
-    if (!fullFeatured) return
+    if (!isFullFeatured()) return
 
     val items = listOf(
         Triple(R.string.home, Icons.Filled.Home, Icons.Outlined.Home),

@@ -35,21 +35,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import me.weishu.nekosu.Natives
 import me.weishu.nekosu.R
 import me.weishu.nekosu.ui.LocalMainPagerState
-import me.weishu.nekosu.ui.util.rootAvailable
+import me.weishu.nekosu.ui.util.isFullFeatured
 
 @Composable
 fun NavigationRailMaterial(
     moduleBadge: ModuleBadgeState,
     modifier: Modifier = Modifier,
 ) {
-    val isManager = Natives.isManager
-    val fullFeatured = isManager && !Natives.requireNewKernel() && rootAvailable()
     val mainPagerState = LocalMainPagerState.current
 
-    if (!fullFeatured) return
+    if (!isFullFeatured()) return
 
     val items = listOf(
         Triple(R.string.home, Icons.Filled.Home, Icons.Outlined.Home),

@@ -19,6 +19,7 @@ import kotlinx.parcelize.Parcelize
 import me.weishu.nekosu.BuildConfig
 import me.weishu.nekosu.Natives
 import me.weishu.nekosu.ksuApp
+import me.weishu.nekosu.data.repository.SettingsRepositoryImpl
 import org.json.JSONArray
 import java.io.File
 
@@ -68,7 +69,8 @@ fun Uri.getFileName(context: Context): String? {
 }
 
 fun createRootShell(globalMnt: Boolean = false): Shell {
-    Shell.enableVerboseLogging = BuildConfig.DEBUG
+    val debugMode = SettingsRepositoryImpl(ksuApp).debugMode
+    Shell.enableVerboseLogging = BuildConfig.DEBUG || debugMode
     val builder = Shell.Builder.create()
     return try {
         if (globalMnt) {
@@ -510,4 +512,10 @@ fun launchApp(packageName: String, userId: Int? = null) {
 fun restartApp(packageName: String, userId: Int? = null) {
     forceStopApp(packageName, userId)
     launchApp(packageName, userId)
+}
+
+fun isFullFeatured(): Boolean {
+    val debugMode = SettingsRepositoryImpl(ksuApp).debugMode
+    if (debugMode) return true
+    return Natives.isManager && !Natives.requireNewKernel() && rootAvailable()
 }

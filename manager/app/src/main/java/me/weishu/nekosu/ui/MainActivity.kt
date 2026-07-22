@@ -84,6 +84,7 @@ import me.weishu.nekosu.ui.theme.LocalEnableFloatingBottomBarBlur
 import me.weishu.nekosu.ui.theme.LocalEnableNavigationBadge
 import me.weishu.nekosu.ui.theme.rememberNekoUiConfig
 import me.weishu.nekosu.ui.util.install
+import me.weishu.nekosu.ui.util.isFullFeatured
 import me.weishu.nekosu.ui.util.rememberBlurBackdrop
 import me.weishu.nekosu.ui.util.rememberContentReady
 import me.weishu.nekosu.ui.util.rootAvailable
@@ -239,8 +240,7 @@ fun MainScreen(
     val enableFloatingBottomBarBlur = LocalEnableFloatingBottomBarBlur.current
     val pagerState = rememberPagerState(initialPage = initialPage, pageCount = { MainPagerConfig.PAGE_COUNT })
     val mainPagerState = rememberMainPagerState(pagerState)
-    val isManager = Natives.isManager
-    val isFullFeatured = isManager && !Natives.requireNewKernel() && rootAvailable()
+    val isFullFeatured = isFullFeatured()
     var userScrollEnabled by remember(isFullFeatured) { mutableStateOf(isFullFeatured) }
 
     val enableNavigationBadge = LocalEnableNavigationBadge.current

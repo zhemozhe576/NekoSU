@@ -54,26 +54,14 @@ class HomeViewModel(
     }
 
     private fun buildState(): HomeUiState {
+        val debugMode = settingsRepo.debugMode
         val kernelVersion = getKernelVersion()
-        val isManager = Natives.isManager
-        val hasKsuDriver = Natives.version != -1
-
-        val ksuCompatibleMode = runBlocking {
-            try {
-                val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }
-                ksuApp.nekoDataStore.data.map { prefs ->
-                    prefs[stringPreferencesKey("neko_ui_config_v2")]?.let { jsonStr ->
-                        json.decodeFromString<NekoUiConfig>(jsonStr).ksuCompatibleMode
-                    } ?: false
-                }.first()
-            } catch (_: Exception) { false }
-        }
-
-        val ksuVersion = if (isManager || (ksuCompatibleMode && hasKsuDriver)) Natives.version else null
-        val kernelUAPIVersion = if (isManager || (ksuCompatibleMode && hasKsuDriver)) Natives.kernelUAPIVersion else null
+        val isManager = if (debugMode) true else Natives.isManager
+        val ksuVersion = if (isManager) (if (debugMode) 12345 else Natives.version) else null
+        val kernelUAPIVersion = if (isManager) (if (debugMode) 1 else Natives.kernelUAPIVersion) else null
         val managerUAPIVersion = Natives.managerUAPIVersion
-        val lkmMode = ksuVersion?.let { if (kernelVersion.isGKI()) Natives.isLkmMode else null }
-        val isRootAvailable = rootAvailable()
+        val lkmMode = ksuVersion?.let { if (kernelVersion.isGKI()) (if (debugMode) true else Natives.isLkmMode) else null }
+        val isRootAvailable = debugMode || rootAvailable()
         val managerVersion = getManagerVersion(ksuApp)
 
         return HomeUiState(
@@ -82,26 +70,26 @@ class HomeViewModel(
             lkmMode = lkmMode,
             isManager = isManager,
             isManagerPrBuild = BuildConfig.IS_PR_BUILD,
-            isKernelPrBuild = Natives.isPrBuild,
-            requiresNewKernel = isManager && Natives.requireNewKernel(),
-            uapiMismatch = isManager && Natives.checkUAPIMismatch(),
+            isKernelPrBuild = if (debugMode) false else Natives.isPrBuild,
+            requiresNewKernel = if (debugMode) false else (isManager && Natives.requireNewKernel()),
+            uapiMismatch = if (debugMode) false else (isManager && Natives.checkUAPIMismatch()),
             kernelUAPIVersion = kernelUAPIVersion,
             managerUAPIVersion = managerUAPIVersion,
             isRootAvailable = isRootAvailable,
-            isSafeMode = Natives.isSafeMode,
-            isLateLoadMode = Natives.isLateLoadMode,
+            isSafeMode = if (debugMode) false else Natives.isSafeMode,
+            isLateLoadMode = if (debugMode) false else Natives.isLateLoadMode,
             checkUpdateEnabled = settingsRepo.checkUpdate,
             latestVersionInfo = LatestVersionInfo(),
             currentManagerVersionCode = managerVersion.versionCode,
-            superuserCount = getSuperuserCount(),
-            moduleCount = getModuleCount(),
+            superuserCount = if (debugMode) 5 else getSuperuserCount(),
+            moduleCount = if (debugMode) 10 else getModuleCount(),
             systemInfo = SystemInfo(
                 kernelVersion = Os.uname().release,
                 managerVersion = "${managerVersion.versionName} (${managerVersion.versionCode}-${managerUAPIVersion})",
                 deviceModel = resolveDeviceName(),
                 fingerprint = Build.FINGERPRINT,
-                selinuxStatus = getSELinuxStatusRaw(),
-                seccompStatus = runCatching {
+                selinuxStatus = if (debugMode) "Enforcing" else getSELinuxStatusRaw(),
+                seccompStatus = if (debugMode) 2 else runCatching {
                     Os.prctl(21 /* PR_GET_SECCOMP */, 0, 0, 0, 0)
                 }.getOrDefault(-1),
             ),

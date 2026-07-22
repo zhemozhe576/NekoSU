@@ -169,18 +169,6 @@ internal fun InstallScreenMiuix(
                             .fillMaxWidth()
                             .padding(top = 12.dp),
                     ) {
-                        CheckboxPreference(
-                            title = stringResource(id = R.string.neko_ksu_compatible),
-                            checked = uiState.ksuCompatible,
-                            summary = stringResource(id = R.string.neko_ksu_compatible_summary),
-                            onCheckedChange = actions.onSelectKsuCompatible
-                        )
-                    }
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 12.dp),
-                    ) {
                         BasicComponent(
                             title = stringResource(id = R.string.install_upload_lkm_file),
                             summary = (uiState.lkmSelection as? LkmSelection.LkmUri)?.let {

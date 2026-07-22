@@ -87,6 +87,8 @@
     <string name="home_click_to_learn_kernelsu">Learn how to install KernelSU and use modules.</string>
     <string name="home_support_title">Support development</string>
     <string name="home_support_content">KernelSU will remain free and open source, donate to the developer to show your support</string>
+    <string name="neko_debug_mode">Debug Mode</string>
+    <string name="neko_debug_mode_summary">Simulate root status for testing without flashing. Enable verbose logging.</string>
     <string name="neko_outlook_title">NekoSU Outlook</string>
     <string name="neko_outlook_content">NekoSU will strive to be an excellent KSU fork. Thanks to the official KernelSU for their contributions.</string>
     <string name="home_gki_warning">Starting from v3.0.0, the GKI work mode will be used only in testing environments. We do not recommend it for daily use, and image files will no longer be provided.</string>

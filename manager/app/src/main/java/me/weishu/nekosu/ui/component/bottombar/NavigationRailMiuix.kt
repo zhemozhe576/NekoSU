@@ -3,10 +3,9 @@ package me.weishu.nekosu.ui.component.bottombar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import me.weishu.nekosu.Natives
 import me.weishu.nekosu.R
 import me.weishu.nekosu.ui.LocalMainPagerState
-import me.weishu.nekosu.ui.util.rootAvailable
+import me.weishu.nekosu.ui.util.isFullFeatured
 import top.yukonga.miuix.kmp.basic.NavigationRail
 import top.yukonga.miuix.kmp.basic.NavigationRailItem
 import top.yukonga.miuix.kmp.basic.rememberNavigationRailState
@@ -17,9 +16,7 @@ fun NavigationRailMiuix(
     moduleBadge: ModuleBadgeState,
     modifier: Modifier = Modifier,
 ) {
-    val isManager = Natives.isManager
-    val fullFeatured = isManager && !Natives.requireNewKernel() && rootAvailable()
-    if (!fullFeatured) return
+    if (!isFullFeatured()) return
 
     val mainState = LocalMainPagerState.current
 
