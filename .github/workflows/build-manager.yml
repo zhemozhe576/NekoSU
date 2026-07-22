@@ -118,15 +118,15 @@ jobs:
     strategy:
       matrix:
         include:
-          - target: x86_64-pc-windows-gnu # windows pc
+          - target: x86_64-pc-windows-gnu
             os: ubuntu-latest
-          - target: x86_64-apple-darwin # Intel mac
+          - target: x86_64-apple-darwin
             os: macos-latest
-          - target: aarch64-apple-darwin # M chip mac
+          - target: aarch64-apple-darwin
             os: macos-latest
-          - target: aarch64-unknown-linux-musl # arm64 Linux
+          - target: aarch64-unknown-linux-musl
             os: ubuntu-latest
-          - target: x86_64-unknown-linux-musl # x86 Linux
+          - target: x86_64-unknown-linux-musl
             os: ubuntu-latest
     uses: ./.github/workflows/ksud-extra.yml
     with:
