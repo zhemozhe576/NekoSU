@@ -2,15 +2,14 @@ package me.weishu.nekosu.ui.component
 
 import androidx.compose.runtime.Composable
 import me.weishu.nekosu.Natives
+import me.weishu.nekosu.data.repository.SettingsRepositoryImpl
+import me.weishu.nekosu.ui.util.isFullFeatured
 
 @Composable
 fun KsuIsValid(
     content: @Composable () -> Unit
 ) {
-    val isManager = Natives.isManager
-    val ksuVersion = if (isManager) Natives.version else null
-
-    if (ksuVersion != null) {
+    if (isFullFeatured()) {
         content()
     }
 }

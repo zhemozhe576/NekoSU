@@ -8,6 +8,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -201,6 +202,10 @@ fun NekoCard(
                     scope.launch { NekoBackgroundManager.hideCard(context, cardId) }
                 }
             )
+        }
+
+        BackHandler(enabled = showMenu) {
+            showMenu = false
         }
 
         if (showMenu) {

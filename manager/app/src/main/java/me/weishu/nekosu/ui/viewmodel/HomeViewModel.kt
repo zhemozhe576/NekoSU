@@ -58,12 +58,12 @@ class HomeViewModel(
             val debugMode = settingsRepo.debugMode
             val kernelVersion = getKernelVersion()
             val isManager = if (debugMode) true else Natives.isManager
-            val ksuVersion = if (isManager) (if (debugMode) 12345 else Natives.version) else null
+            val managerVersion = getManagerVersion(ksuApp)
+            val ksuVersion = if (isManager) (if (debugMode) managerVersion.versionCode.toInt() else Natives.version) else null
             val kernelUAPIVersion = if (isManager) (if (debugMode) 1 else Natives.kernelUAPIVersion) else null
             val managerUAPIVersion = Natives.managerUAPIVersion
             val lkmMode = ksuVersion?.let { if (kernelVersion.isGKI()) (if (debugMode) true else Natives.isLkmMode) else null }
             val isRootAvailable = debugMode || rootAvailable()
-            val managerVersion = getManagerVersion(ksuApp)
 
             HomeUiState(
                 kernelVersion = kernelVersion,

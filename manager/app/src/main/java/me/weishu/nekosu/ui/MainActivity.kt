@@ -205,10 +205,11 @@ class MainActivity : ComponentActivity() {
 
                     Box {
                         NekoGlobalBackground(
-                            config = nekoConfig.globalBackground,
-                            modifier = Modifier.matchParentSize()
-                        )
-                        when (uiMode) {
+                        config = nekoConfig.globalBackground,
+                        modifier = Modifier.matchParentSize()
+                    )
+                    NekoGlobalDialogs()
+                    when (uiMode) {
                             UiMode.Material -> androidx.compose.material3.Scaffold(
                                 containerColor = androidx.compose.ui.graphics.Color.Transparent
                             ) { navDisplay() }
